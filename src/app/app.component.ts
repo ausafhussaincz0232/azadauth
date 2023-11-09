@@ -15,7 +15,7 @@ import { AzadService } from './azad.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'azadlogin';
+  title = 'azadauth';
   private readonly _destroy = new Subject<void>();
   isUserLoggedIn: boolean = false;
 
