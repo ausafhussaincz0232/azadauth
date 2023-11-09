@@ -24,10 +24,9 @@ import { AzadService } from './azad.service';
     MsalModule.forRoot(
       new PublicClientApplication({
         auth: {
-          clientId: '8b6d5f0a-6987-445a-9263-2b8fadc28630',
+          clientId: 'CLIENT_ID',
           redirectUri: 'http://localhost:4200',
-          authority:
-            'https://login.microsoftonline.com/cd3779f6-2af9-4aee-be9a-45e131119f0b',
+          authority: 'https://login.microsoftonline.com/TENANT_ID',
         },
         cache: {
           cacheLocation: 'localStorage',
