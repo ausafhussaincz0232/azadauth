@@ -10,11 +10,13 @@ import {
 } from '@azure/msal-angular';
 import { InteractionType, PublicClientApplication } from '@azure/msal-browser';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ProfileComponent } from './profile/profile.component';
+import { HomeComponent } from './home/home.component';
 
 // const isIE = window.navigator.userAgent.indexOf('MSIE') > -1 || window.navigator.userAgent.indexOf('Trident')
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ProfileComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

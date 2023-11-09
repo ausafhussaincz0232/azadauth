@@ -1,1 +1,4 @@
-<p> Hello from Login page. </p>
+<button *ngIf="!isUserLoggedIn" click="login()">Login</button>
+<button *ngIf="isUserLoggedIn" click="logout()">Logout</button>
+
+<router-outlet></router-outlet>
