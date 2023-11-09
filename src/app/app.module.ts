@@ -12,6 +12,7 @@ import { InteractionType, PublicClientApplication } from '@azure/msal-browser';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
+import { AzadService } from './azad.service';
 
 // const isIE = window.navigator.userAgent.indexOf('MSIE') > -1 || window.navigator.userAgent.indexOf('Trident')
 
@@ -54,6 +55,7 @@ import { HomeComponent } from './home/home.component';
       multi: true,
     },
     MsalGuard,
+    AzadService,
   ],
   bootstrap: [AppComponent, MsalRedirectComponent],
 })

@@ -5,8 +5,9 @@ import {
   MsalGuardConfiguration,
   MsalService,
 } from '@azure/msal-angular';
-import { InteractionStatus } from '@azure/msal-browser';
+import { InteractionStatus, RedirectRequest } from '@azure/msal-browser';
 import { Subject, filter, takeUntil } from 'rxjs';
+import { AzadService } from './azad.service';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
     private msalBroadCastService: MsalBroadcastService,
-    private authService: MsalService
+    private authService: MsalService,
+    private azureadservice: AzadService
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +38,7 @@ export class AppComponent implements OnInit, OnDestroy {
       .subscribe((item) => {
         this.isUserLoggedIn =
           this.authService.instance.getAllAccounts().length > 0;
+        this.azureadservice.isUserLoggedIn.next(this.isUserLoggedIn);
       });
   }
 
@@ -44,6 +47,19 @@ export class AppComponent implements OnInit, OnDestroy {
     this._destroy.complete();
   }
 
-  login() {}
-  logout() {}
+  login() {
+    if (this.msalGuardConfig.authRequest) {
+      this.authService.loginRedirect({
+        ...this.msalGuardConfig.authRequest,
+      } as RedirectRequest);
+    } else {
+      this.authService.loginRedirect();
+    }
+  }
+
+  logout() {
+    this.authService.logoutRedirect({
+      postLogoutRedirectUri: 'http://localhost:4200',
+    });
+  }
 }
